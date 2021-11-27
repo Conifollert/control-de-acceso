@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -22,5 +23,6 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
         \App\Models\User::factory(10)->create();
+        \App\Models\Owner::factory(10)->create();
     }
 }
