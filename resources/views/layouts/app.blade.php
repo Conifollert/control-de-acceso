@@ -58,6 +58,22 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('propietarios') }}">
+                                        Propietarios
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('visitas') }}">
+                                        Visita
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('registro') }}">
+                                        Registro
+                                     </a>
+
+                                     <a class="dropdown-item" href="{{ route('control-acceso') }}">
+                                        Control de acceso
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

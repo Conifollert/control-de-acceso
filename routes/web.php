@@ -20,7 +20,22 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/propietarios', [App\Http\Controllers\OwnersController::class, 'index'])->name('owners.index');
+
+Route::get('/propietarios', function() {
+    return view('owners');
+})->name('propietarios');
+
+Route::get('/visitas', function() {
+    return view('guest');
+})->name('visitas');
+
+Route::get('/registro', function() {
+    return view('register');
+})->name('registro');
+
+Route::get('/control-de-acceso', function() {
+    return view('access-control');
+})->name('control-acceso');
 
 Route::get('owners', [App\Http\Controllers\API\OwnersController::class, 'index']);
 Route::get('owners/{owner}', [App\Http\Controllers\API\OwnersController::class, 'show']);
