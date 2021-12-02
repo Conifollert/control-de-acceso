@@ -12,7 +12,8 @@ class Owner extends Model
     protected $fillable = [
         'dni',
         'name',
-        'lastname',
+        'fathers_surname',
+        'mothers_surname',
         'phone',
         'type_livingplace',
         'number',

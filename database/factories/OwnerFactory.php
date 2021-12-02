@@ -21,7 +21,8 @@ class OwnerFactory extends Factory
 
             'dni'               => $rut,
             'name'              => $this->faker->name(),
-            'lastname'          => $this->faker->lastname(),
+            'fathers_surname'   => $this->faker->lastname(),
+            'mothers_surname'   => $this->faker->lastname(),
             'phone'             => $this->faker->numberBetween($min = 300000000, $max = 900000000),
             'type_livingplace'  => 'DEPARTAMENTO',
             'number'            => $this->faker->buildingNumber(),

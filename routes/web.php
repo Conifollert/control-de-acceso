@@ -21,9 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/propietarios', function() {
-    return view('owners');
-})->name('propietarios');
+
 
 Route::get('/visitas', function() {
     return view('guest');
@@ -37,7 +35,15 @@ Route::get('/control-de-acceso', function() {
     return view('access-control');
 })->name('control-acceso');
 
-Route::get('owners', [App\Http\Controllers\API\OwnersController::class, 'index']);
+Route::get('owners', [App\Http\Controllers\API\OwnersController::class, 'index'])->name('owners.get');
 Route::get('owners/{owner}', [App\Http\Controllers\API\OwnersController::class, 'show']);
 Route::delete('owners/{owner}', [App\Http\Controllers\API\OwnersController::class, 'destroy']);
 
+
+Route::get('/propietarios', [App\Http\Controllers\OwnerController::class, 'index'])
+    ->name('owners.index');
+Route::get('/propietarios/create', [App\Http\Controllers\OwnerController::class, 'create'])
+    ->name('owners.create');
+
+Route::post('/propietarios', [App\Http\Controllers\OwnerController::class, 'store'])
+    ->name('owners.store');
