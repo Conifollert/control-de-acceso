@@ -19,4 +19,19 @@ class Access extends Model
         'floor',
         'number_depto',
     ];
+
+    // Scope
+    public function scopeDate($query, $date)
+    {
+        if($date != null || $date != '') {
+            $query->where('date', $date);
+        }
+    }
+
+    public function scopeDni($query, $dni)
+    {
+        if($dni != null || $dni != '') {
+            $query->where('dni', $dni);
+        }
+    }
 }
