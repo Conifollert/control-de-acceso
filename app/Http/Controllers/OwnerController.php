@@ -8,77 +8,48 @@ use App\Http\Requests\UpdateOwnerRequest;
 
 class OwnerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $owners = Owner::orderBy('id', 'DESC')
+            ->paginate(10);
+        return view('owners.index', compact('owners'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('owners.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreOwnerRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreOwnerRequest $request)
     {
-        //
+        Owner::create([
+            'dni'               => $request->dni,
+            'name'              => $request->name,
+            'fathers_surname'   => $request->fathers_surname,
+            'mothers_surname'   => $request->mothers_surname,
+            'phone'             => $request->phone,
+            'type_livingplace'  => 'DEPARTAMENTO',
+            'number'            => $request->number,
+        ]);
+
+        return redirect()->route('owners.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Owner  $owner
-     * @return \Illuminate\Http\Response
-     */
     public function show(Owner $owner)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Owner  $owner
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Owner $owner)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateOwnerRequest  $request
-     * @param  \App\Models\Owner  $owner
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateOwnerRequest $request, Owner $owner)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Owner  $owner
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Owner $owner)
     {
         //

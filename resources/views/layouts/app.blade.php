@@ -58,7 +58,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('propietarios') }}">
+                                    <a class="dropdown-item" href="{{ route('owners.index') }}">
                                         Propietarios
                                     </a>
 
