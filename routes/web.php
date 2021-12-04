@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ControllAcessController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +42,6 @@ Route::get('/control-de-acceso', function() {
 Route::get('owners', [App\Http\Controllers\API\OwnersController::class, 'index']);
 Route::get('owners/{owner}', [App\Http\Controllers\API\OwnersController::class, 'show']);
 Route::delete('owners/{owner}', [App\Http\Controllers\API\OwnersController::class, 'destroy']);
+
+
 

@@ -14,8 +14,11 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+            $table->integer('id');
+            $table->string('name', 15);
+            $table->string('lastname', 255);
+            $table->string('dni',15);
+            $table->integer('phone');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
