@@ -7,11 +7,6 @@ use Freshwork\ChileanBundle\Rut;
 
 class OwnerFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
     public function definition()
     {
         $random_number = rand(1000000, 25000000);

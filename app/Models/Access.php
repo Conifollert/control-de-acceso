@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Access extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'dni',
+        'name',
+        'lastname',
+        'date',
+        'time',
+        'tower',
+        'floor',
+        'number_depto',
+    ];
 }

@@ -14,10 +14,7 @@ class AccessController extends Controller
      */
     public function index()
     {
-       
-        $accesses = Access::orderBy('id', 'DESC')
-        ->paginate(10);
-        return view ('access-control', compact('accesses')) ;
+        return view ('access-control');
     }
 
     /**

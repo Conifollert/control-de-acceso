@@ -37,7 +37,9 @@ Route::get('/control-de-acceso', function() {
     return view('access-control');
 })->name('control-acceso');
 
+// Esta ruta lleva la direccion del blade
 Route::get('/control-de-acceso', [App\Http\Controllers\AccessController::class, 'index'])->name('control-acceso');
+Route::get('api/accesses', [App\Http\Controllers\API\AccessController::class, 'index'])->name('accesses.index');
 
 Route::get('owners', [App\Http\Controllers\API\OwnersController::class, 'index'])->name('owners.get');
 Route::get('owners/{owner}', [App\Http\Controllers\API\OwnersController::class, 'show']);
