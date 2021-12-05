@@ -2326,12 +2326,54 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     this.access.date = this.date = moment__WEBPACK_IMPORTED_MODULE_1___default()().format('YYYY-MM-DD');
-    this.access.time = this.date = moment__WEBPACK_IMPORTED_MODULE_1___default()().format('H:mm');
+    this.access.time = this.date = moment__WEBPACK_IMPORTED_MODULE_1___default()().format('HH:mm');
   },
   data: function data() {
     return {
@@ -2344,7 +2386,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         tower: 'Torre 1',
         floor: 'Piso 1',
         number_depto: ''
-      }
+      },
+      errors: []
     };
   },
   methods: {
@@ -2369,6 +2412,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.access.tower = response.tower;
                   _this.access.floor = response.floor;
                   _this.access.number_depto = response.number_depto;
+                  _this.errors = [];
                 }
 
               case 4:
@@ -2388,21 +2432,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
+                _context2.prev = 0;
+                _context2.next = 3;
                 return _services_Access__WEBPACK_IMPORTED_MODULE_2__["default"].store(_this2.access);
 
-              case 2:
+              case 3:
                 response = _context2.sent;
 
                 _this2.$emit('pushAccess', response.data);
 
-              case 4:
+                _this2.resetInputs();
+
+                _context2.next = 11;
+                break;
+
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](0);
+
+                if (_context2.t0.response.status == 422) {
+                  _this2.errors = _context2.t0.response.data.errors;
+                }
+
+              case 11:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2);
+        }, _callee2, null, [[0, 8]]);
       }))();
+    },
+    resetInputs: function resetInputs() {
+      this.access.dni = '';
+      this.access.name = '';
+      this.access.lastname = '';
+      this.access.tower = 'Torre 1';
+      this.access.floor = 'Piso 1';
+      this.access.number_depto = '';
     }
   }
 });
@@ -60690,6 +60756,7 @@ var render = function () {
               },
             ],
             staticClass: "form-control",
+            class: _vm.errors.dni ? "is-invalid" : "",
             attrs: { type: "search", id: "dni" },
             domProps: { value: _vm.access.dni },
             on: {
@@ -60701,6 +60768,12 @@ var render = function () {
               },
             },
           }),
+          _vm._v(" "),
+          _vm.errors && _vm.errors.dni
+            ? _c("span", { staticClass: "text-danger text-center" }, [
+                _vm._v(_vm._s(_vm.errors.dni[0]) + "\n                "),
+              ])
+            : _vm._e(),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 mt-2" }, [
@@ -60733,6 +60806,7 @@ var render = function () {
               },
             ],
             staticClass: "form-control",
+            class: _vm.errors.name ? "is-invalid" : "",
             attrs: { type: "text", id: "name" },
             domProps: { value: _vm.access.name },
             on: {
@@ -60744,6 +60818,12 @@ var render = function () {
               },
             },
           }),
+          _vm._v(" "),
+          _vm.errors && _vm.errors.name
+            ? _c("span", { staticClass: "text-danger text-center" }, [
+                _vm._v(_vm._s(_vm.errors.name[0]) + "\n                "),
+              ])
+            : _vm._e(),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-12 mt-2" }, [
@@ -60759,6 +60839,7 @@ var render = function () {
               },
             ],
             staticClass: "form-control",
+            class: _vm.errors.lastname ? "is-invalid" : "",
             attrs: { type: "text", id: "lastname" },
             domProps: { value: _vm.access.lastname },
             on: {
@@ -60770,6 +60851,12 @@ var render = function () {
               },
             },
           }),
+          _vm._v(" "),
+          _vm.errors && _vm.errors.lastname
+            ? _c("span", { staticClass: "text-danger text-center" }, [
+                _vm._v(_vm._s(_vm.errors.lastname[0]) + "\n                "),
+              ])
+            : _vm._e(),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 mt-2" }, [
@@ -60787,6 +60874,7 @@ var render = function () {
                 },
               ],
               staticClass: "form-control",
+              class: _vm.errors.tower ? "is-invalid" : "",
               attrs: { id: "tower" },
               on: {
                 change: function ($event) {
@@ -60849,6 +60937,7 @@ var render = function () {
                 },
               ],
               staticClass: "form-control",
+              class: _vm.errors.floor ? "is-invalid" : "",
               attrs: { id: "floor" },
               on: {
                 change: function ($event) {
@@ -60897,6 +60986,7 @@ var render = function () {
               },
             ],
             staticClass: "form-control",
+            class: _vm.errors.number_depto ? "is-invalid" : "",
             attrs: { type: "text", id: "number_depto" },
             domProps: { value: _vm.access.number_depto },
             on: {

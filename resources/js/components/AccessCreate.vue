@@ -21,7 +21,16 @@
                 <!-- Rut -->
                 <div class="col-8 mt-2">
                     <label for="dni">Rut</label>
-                    <input v-model="access.dni" type="search" id="dni" class="form-control">
+                    <input
+                        v-model="access.dni"
+                        type="search"
+                        id="dni"
+                        class="form-control"
+                        :class="(errors.dni) ? 'is-invalid' : ''"
+                    >
+                    <span class="text-danger text-center"
+                        v-if="errors && errors.dni">{{errors.dni[0]}}
+                    </span>
                 </div>
                 <!-- Boton buscar -->
                 <div class="col-4 mt-2">
@@ -35,17 +44,39 @@
                 <!-- Nombres -->
                 <div class="col-12 mt-2">
                     <label for="name">Nombres</label>
-                    <input v-model="access.name" type="text" id="name" class="form-control">
+                    <input
+                        v-model="access.name"
+                        type="text" id="name"
+                        class="form-control"
+                        :class="(errors.name) ? 'is-invalid' : ''"
+                    >
+                    <span class="text-danger text-center"
+                        v-if="errors && errors.name">{{errors.name[0]}}
+                    </span>
                 </div>
                 <!-- Apellidos -->
                 <div class="col-12 mt-2">
                     <label for="lastname">Apellidos</label>
-                    <input v-model="access.lastname" type="text" id="lastname" class="form-control">
+                    <input
+                        v-model="access.lastname"
+                        type="text"
+                        id="lastname"
+                        class="form-control"
+                        :class="(errors.lastname) ? 'is-invalid' : ''"
+                    >
+                    <span class="text-danger text-center"
+                        v-if="errors && errors.lastname">{{errors.lastname[0]}}
+                    </span>
                 </div>
                 <!-- Torre -->
                 <div class="col-4 mt-2">
                     <label for="tower">Torre</label>
-                    <select v-model="access.tower" class="form-control" id="tower">
+                    <select
+                        v-model="access.tower"
+                        class="form-control"
+                        id="tower"
+                        :class="(errors.tower) ? 'is-invalid' : ''"
+                    >
                         <option value="Torre 1">Torre 1</option>
                         <option value="Torre 2">Torre 2</option>
                         <option value="Torre 3">Torre 3</option>
@@ -57,7 +88,12 @@
                 <!-- Piso -->
                 <div class="col-4 mt-2">
                     <label for="floor">Piso</label>
-                    <select v-model="access.floor" class="form-control" id="floor">
+                    <select
+                        v-model="access.floor"
+                        class="form-control"
+                        id="floor"
+                        :class="(errors.floor) ? 'is-invalid' : ''"
+                    >
                         <option value="Piso 1">Piso 1</option>
                         <option value="Piso 2">Piso 2</option>
                         <option value="Piso 3">Piso 3</option>
@@ -68,7 +104,13 @@
                 <!-- Numero departamento -->
                 <div class="col-4 mt-2">
                     <label for="number_depto">Número depto</label>
-                    <input v-model="access.number_depto" type="text" id="number_depto" class="form-control">
+                    <input
+                        v-model="access.number_depto"
+                        type="text"
+                        id="number_depto"
+                        class="form-control"
+                        :class="(errors.number_depto) ? 'is-invalid' : ''"
+                    >
                 </div>
             </div>
         </div>
@@ -85,7 +127,7 @@
     export default {
         mounted() {
             this.access.date = this.date = moment().format('YYYY-MM-DD')
-            this.access.time = this.date = moment().format('H:mm')
+            this.access.time = this.date = moment().format('HH:mm')
         },
         data() {
             return {
@@ -98,7 +140,8 @@
                     tower: 'Torre 1',
                     floor: 'Piso 1',
                     number_depto: '',
-                }
+                },
+                errors: [],
             }
         },
         methods: {
@@ -110,12 +153,28 @@
                     this.access.tower = response.tower
                     this.access.floor = response.floor
                     this.access.number_depto = response.number_depto
+                    this.errors = []
                 }
             },
             async store(){
-                const response = await AccessService.store(this.access)
-                this.$emit('pushAccess', response.data)
+                try {
+                    const response = await AccessService.store(this.access)
+                    this.$emit('pushAccess', response.data)
+                    this.resetInputs()
+                }catch (error){
+                    if(error.response.status == 422){
+                        this.errors = error.response.data.errors
+                    }
+                }
             },
+            resetInputs(){
+                this.access.dni            = ''
+                this.access.name           = ''
+                this.access.lastname       = ''
+                this.access.tower          = 'Torre 1'
+                this.access.floor          = 'Piso 1'
+                this.access.number_depto   = ''
+            }
         }
     }
 </script>

@@ -35,4 +35,22 @@ class StoreAccessRequest extends FormRequest
             'number_depto'  => 'required|max:50',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'dni.required'          => 'rut es requerido.',
+            'dni.cl_rut'            => 'El atributo rut no es válido.',
+            'name.required'         => 'nombre es requerido.',
+            'name.max'              => 'nombre no debe ser mayor que 50 caracteres.',
+            'lastname.required'     => 'Apellido es requerido',
+            'lastname.max'          => 'Apellido no deber ser mayor que 50 caracteres ',
+            'date.required'         => 'Fecha es Requerido',
+            'time.required'         => 'Hora Requerido',
+            'tower.required'        => 'Torre Requerido',
+            'floor.required'        => 'Piso Requerido',
+            'number_depto.required' => 'Numero de Departamento Requerido',
+            'number_depto.max'      => 'Numero de Departamento no debe ser mayor que 50 caracteres',
+        ];
+    }
 }
