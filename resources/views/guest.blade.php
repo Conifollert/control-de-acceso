@@ -83,7 +83,7 @@
                                 @enderror
                             </div>
                         </div>
-                        {{-- N° Casa/Dpto --}}
+                        {{-- N° Dpto --}}
                         <div class="form-group row">
                             <label for="numberLivingplace" class="col-md-4 col-form-label text-md-right"> N° Casa/Dpto</label>
 
