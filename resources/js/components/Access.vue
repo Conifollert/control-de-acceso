@@ -29,13 +29,16 @@
                             </a>
                         </div>
                         <div class="col-md-3">
-                            <a class="btn btn-primary mt-3 mb-3" href="">
+                            <button
+                                class="btn btn-primary mt-3 mb-3 mr-4"
+                                style="float: right;"
+                                data-toggle="modal"
+                                data-target="#Modal">
                                 Nuevo registro
-                            </a>
+                            </button>
                         </div>
                     </div>
                     <div class="card-body">
-
                         <table class="table">
                             <thead class="thead-dark">
                             <tr>
@@ -52,7 +55,7 @@
                             <tbody>
                                 <tr v-for="(access, index) in accesses.data" :key="index">
                                     <td>{{ access.date | moment("DD-MM-YYYY") }}</td>
-                                    <td>{{ access.time.substring(0, access.time.length - 3) }}</td>
+                                    <td>{{ access.time }}</td>
                                     <td>{{ access.dni }}</td>
                                     <td>{{ access.name }}</td>
                                     <td>{{ access.lastname }}</td>
@@ -64,6 +67,14 @@
                         </table>
                     </div>
                 </div>
+                <!-- Modal -->
+                <div class="modal fade" id="Modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <access-create
+                            @pushAccess=pushAccess>
+                        </access-create>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -72,7 +83,9 @@
 <script>
     import moment from 'moment'
     import AccessService from '../services/Access'
+    import AccessCreate from './AccessCreate.vue'
     export default {
+  components: { AccessCreate },
         mounted() {
             this.date = moment().format('YYYY-MM-DD')
             this.getAccesses()
@@ -80,13 +93,20 @@
         data() {
             return {
                 accesses: [],
+                access: [],
                 dni: '',
                 date: '',
+                title: '',
             }
         },
         methods: {
             async getAccesses(){
                 this.accesses = await AccessService.index(this.dni, this.date)
+            },
+            pushAccess(access){
+                console.log(access)
+                $("#Modal").modal('hide')
+                this.accesses.data.push(access)
             }
         }
     }

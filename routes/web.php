@@ -40,6 +40,8 @@ Route::get('/control-de-acceso', function() {
 // Esta ruta lleva la direccion del blade
 Route::get('/control-de-acceso', [App\Http\Controllers\AccessController::class, 'index'])->name('control-acceso');
 Route::get('api/accesses', [App\Http\Controllers\API\AccessController::class, 'index'])->name('accesses.index');
+Route::post('api/accesses', [App\Http\Controllers\API\AccessController::class, 'store'])->name('accesses.store');
+Route::get('api/accesses/client', [App\Http\Controllers\API\AccessController::class, 'getAccessByDni'])->name('accesses.get.access');
 
 Route::get('owners', [App\Http\Controllers\API\OwnersController::class, 'index'])->name('owners.get');
 Route::get('owners/{owner}', [App\Http\Controllers\API\OwnersController::class, 'show']);
