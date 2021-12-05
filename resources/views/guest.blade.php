@@ -85,7 +85,7 @@
                         </div>
                         {{-- N° Dpto --}}
                         <div class="form-group row">
-                            <label for="numberLivingplace" class="col-md-4 col-form-label text-md-right"> N° Casa/Dpto</label>
+                            <label for="numberLivingplace" class="col-md-4 col-form-label text-md-right"> N° Dpto</label>
 
                             <div class="col-md-6">
                                 <input id="numberLivingplace" type="numberLivingplace" class="form-control @error('numberLivingplace') is-invalid @enderror" name="numberLivingplace" value="{{ old('numberLivingplace') }}" required autocomplete="numberLivingplace">
